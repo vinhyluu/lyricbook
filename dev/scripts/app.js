@@ -29,10 +29,10 @@ class App extends React.Component {
       const songsData = firebaseData.val();
 
       for (let itemKey in songsData) {
-        // console.log(songsData[itemKey]);
+        console.log(songsData[itemKey])
         songsArray.push(songsData[itemKey])
-        
-        
+      }
+
         //instead of pushing the value pushing an object that has key names and then a data property of the data you wanted 
         //or a nested for in loop 
 
@@ -45,7 +45,7 @@ class App extends React.Component {
         //   // console.log(songsData[itemKey]);
         //   console.log(songsData);
         //   songsArray.push(songsData[itemKey]) ORIGINAL*********
-      }
+      
 
       this.setState({
         songs: songsArray
@@ -62,12 +62,13 @@ class App extends React.Component {
     })
   }
 
+
   render() {
     return (
       <div className="wrapper">
         <div className="mainContainer">
-            <h1>LyricBook</h1>
-            <SongForm submitForm={this.addSongItem} />
+          <h1>LyricBook</h1>
+          <SongForm submitForm={this.addSongItem} />
           <div>
             {this.state.songs.map((song, i) => {
               return <DisplaySong data={song} key={i} />
@@ -77,16 +78,28 @@ class App extends React.Component {
       </div>
     )
   }
+  
 }
 
 class DisplaySong extends React.Component {
   render() {
-    if(typeof this.props.data==="object"){
-      return <li></li>
-    }
-    return <div className="storedLyrics">{this.props.data}</div>
-  }
-}
+    console.log(this);
+    if (typeof this.props.data === "object") {
+      for(let title in this.props.data){
+        return<div className="finalLyric">
+                <div>{title}</div>
+                <div>{this.props.data[title].date }</div>
+                <div>{this.props.data[title].lyrics}</div>
+              </div>
+            }
+          }
+        }
+      }
+    // return <div className="storedLyrics">
+    //           <div>{this.props.data}</div>
+    //        </div>
+    //     }
+    //   }
 
 //objectkeys, for in loop or in coponent did mount 
 ReactDOM.render(<App />, document.getElementById('app'));

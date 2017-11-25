@@ -14,23 +14,57 @@ html{
 .mainContainer{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
-select, .submitButton{
-    display: block;
-    margin: 0 auto;
+.mainContainer h1{
+    font-size: 8rem;
+    margin: 20px 0 30px 0;
 }
 
-textarea{
+select{
+    margin-bottom: 20px;
+    width: 150px;
+    font-size: 2rem;
+}
+
+.lyricBox{
     width: 500px;
     height: 500px;
-    font-size: 2rem;
     margin-top: 20px;
     margin-bottom: 20px;
+    font-size: 3rem;
+}
+
+.dateBox{
+    margin-right: 20px;
 }
 
 .storedLyrics{
-    margin: 30px;
+    margin: 20px 0 20px 0;
+    font-size: 3rem;
+    width: 500px;
+    border: 1px solid black;
+}
+
+.submitButton{
+    font-size: 2rem;
+    text-transform: uppercase;
+    background: black;
+    color: white;
+}
+
+::placeholder{
+    font-size: 1.5rem;
+}
+
+.dateBox, .titleBox{
+    font-size: 1.5rem;
+}
+
+.appContainer{
+    display: flex;
+}
+
+.finalLyric{
+    border: 1px solid black;
 }
