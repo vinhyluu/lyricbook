@@ -4,9 +4,10 @@ import ReactDOM from 'react-dom';
 class SongForm extends React.Component {
     constructor() {
         super();
+        this.genres = ["Lust", "Love", "Separation", "Random"]
         this.state = {
             currentLyrics: "",
-            currentGenre: "",
+            currentGenre: this.genres[0]
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -35,9 +36,9 @@ class SongForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        this.props.submitForm(this.state.handleDate),
-        this.props.submitForm(this.state.currentTitle),
-        this.props.submitForm(this.state.currentLyrics),
+        // this.props.submitForm(this.state.handleDate),
+        // this.props.submitForm(this.state.currentTitle),
+        // this.props.submitForm(this.state.currentLyrics),
 
         this.setState({
             currentLyrics: "",
@@ -45,7 +46,6 @@ class SongForm extends React.Component {
             currentDate: "",
         });
 
-        // const dbRef = firebase.database().ref();
         let song = {
             date: this.state.currentDate,
             lyrics: this.state.currentLyrics
@@ -65,17 +65,18 @@ class SongForm extends React.Component {
             <div className="appContainer">
                 <div className="formContainer">
                     <form action="" onSubmit={this.handleSubmit}>
-                        <select name="songChoices" onChange={this.handleOption}>
-                            <option value="love">Love</option>
-                            <option value="lust">Lust</option>
-                            <option value="separation">Separation</option>
-                            <option value="random">Random</option>
-                        </select>
+                        <div className="selectContainer">
+                            <select name="songChoices" onChange={this.handleOption}>
+                                {this.genres.map((genre, key) => {
+                                    return <option key={key} value={genre}>{genre}</option>
+                                })}
+                            </select>
+                        </div>
                         
                         <div className="textContainer"> 
-                            <div>
-                                <textarea className="dateBox" name="date" value={this.state.currentDate} onChange={this.handleDate} required>Date: </textarea> 
-                                <textarea className="titleBox" name="title" value={this.state.currentTitle} onChange={this.handleTitle} required>Title: </textarea>
+                            <div className="titleDate">
+                                <textarea className="dateBox" name="date" value={this.state.currentDate} onChange={this.handleDate} required placeholder="Date:"></textarea> 
+                                <textarea className="titleBox" name="title" value={this.state.currentTitle} onChange={this.handleTitle} required placeholder="Title:"></textarea>
                             </div>
                             <div>
                                 <textarea className="lyricBox" name="message" value={this.state.currentLyrics} onChange={this.handleChange} required></textarea>   

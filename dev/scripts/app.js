@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import SongForm from './SongForm';
+import DisplaySong from './DisplaySong';
 
-var config = {
+const config = {
   apiKey: "AIzaSyD3UAahOn--1beUuadqzIK6mAr7DsjjTD0",
   authDomain: "project-5-13be9.firebaseapp.com",
   databaseURL: "https://project-5-13be9.firebaseio.com",
@@ -18,34 +19,28 @@ class App extends React.Component {
     this.state = {
       songs: []
     }
-    this.addSongItem = this.addSongItem.bind(this);
+    // this.addSongItem = this.addSongItem.bind(this);
   }
 
   componentDidMount() {
     const dbRef = firebase.database().ref()
 
     dbRef.on("value", (firebaseData) => {
+      console.log("Hi I ran!!");
       const songsArray = [];
       const songsData = firebaseData.val();
 
-      for (let itemKey in songsData) {
-        console.log(songsData[itemKey])
-        songsArray.push(songsData[itemKey])
+      for (let category in songsData) {
+        // console.log(songsData[category])
+        for(let title in songsData[category]){
+          songsArray.push({
+            title: title,
+            date: songsData[category][title].date,
+            lyrics: songsData[category][title].lyrics
+          })
+        }
       }
-
-        //instead of pushing the value pushing an object that has key names and then a data property of the data you wanted 
-        //or a nested for in loop 
-
-        // {
-        //   data: ['dasdf','dsaa'],
-        //   key: 'love'
-        // }
-
-        // for (let itemKey in songsData) {
-        //   // console.log(songsData[itemKey]);
-        //   console.log(songsData);
-        //   songsArray.push(songsData[itemKey]) ORIGINAL*********
-      
+      //add a key category so that in displaysong you can put the category as well 
 
       this.setState({
         songs: songsArray
@@ -53,14 +48,13 @@ class App extends React.Component {
     });
   }
 
-  addSongItem(addSong) {
-    // console.log(addSong);
-    const newState = Array.from(this.state.songs)
-    newState.push(addSong);
-    this.setState({
-      songs: newState
-    })
-  }
+  // addSongItem(addSong) {
+  //   const newSongs = Array.from(this.state.songs)
+  //   newSongs.push(addSong);
+  //   this.setState({
+  //     songs: newSongs
+  //   })
+  // }
 
 
   render() {
@@ -68,38 +62,23 @@ class App extends React.Component {
       <div className="wrapper">
         <div className="mainContainer">
           <h1>LyricBook</h1>
-          <SongForm submitForm={this.addSongItem} />
+          <SongForm />
           <div>
             {this.state.songs.map((song, i) => {
-              return <DisplaySong data={song} key={i} />
+              // console.log(this.state.songs);
+              return <DisplaySong title={song.title} lyrics={song.lyrics} date={song.date} key={i} />
             })}
           </div>
         </div>
       </div>
     )
   }
-  
 }
 
-class DisplaySong extends React.Component {
-  render() {
-    console.log(this);
-    if (typeof this.props.data === "object") {
-      for(let title in this.props.data){
-        return<div className="finalLyric">
-                <div>{title}</div>
-                <div>{this.props.data[title].date }</div>
-                <div>{this.props.data[title].lyrics}</div>
-              </div>
-            }
-          }
-        }
-      }
     // return <div className="storedLyrics">
     //           <div>{this.props.data}</div>
     //        </div>
     //     }
     //   }
 
-//objectkeys, for in loop or in coponent did mount 
 ReactDOM.render(<App />, document.getElementById('app'));

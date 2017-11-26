@@ -7,50 +7,61 @@ html{
 }
 
 .wrapper{
-    width: 65%;
+    width: 100%;
     margin: 0 auto;
 }
 
-.mainContainer{
-    display: flex;
-    flex-direction: column;
-}
-
 .mainContainer h1{
-    font-size: 8rem;
-    margin: 20px 0 30px 0;
+    font-size: 15rem;
+    margin: 0 0 30px 0;
+    text-align: center;
+    font-family: 'Dancing Script', cursive;
 }
 
 select{
     margin-bottom: 20px;
     width: 150px;
     font-size: 2rem;
+    border: none;
+    background: black;
+    color: white;
+}
+
+.formContainer{
+    width: 500px;
 }
 
 .lyricBox{
-    width: 500px;
+    width: 100%;
     height: 500px;
     margin-top: 20px;
     margin-bottom: 20px;
     font-size: 3rem;
+    padding: 20px;
 }
 
 .dateBox{
     margin-right: 20px;
 }
 
-.storedLyrics{
+.finalLyric{
     margin: 20px 0 20px 0;
     font-size: 3rem;
     width: 500px;
     border: 1px solid black;
+    white-space: pre-line;
 }
 
+.submitContainer{
+    display: flex;
+    justify-content: center;
+}
 .submitButton{
     font-size: 2rem;
-    text-transform: uppercase;
     background: black;
     color: white;
+    width: 150px;
+    border: none;
 }
 
 ::placeholder{
@@ -58,13 +69,98 @@ select{
 }
 
 .dateBox, .titleBox{
+    padding-top: 15px;
+    padding-left: 10px;
     font-size: 1.5rem;
 }
 
 .appContainer{
     display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
 }
 
+.lyricContainer{
+    display: flex;
+    justify-content: center;
+}
 .finalLyric{
-    border: 1px solid black;
+    border:10px solid rgba(125,175,250,0.3);
+    border-top-right-radius:50px; border-top-left-radius:50px; border-bottom-left-radius:50px;
+    padding: 20px;
+    background: white;
+}
+
+.finalLyric h2{
+    border-bottom: 3px solid red;
+    font-size: 3rem;
+    display: inline-block;
+    margin-bottom: 0;
+}
+
+.finalLyric h3{
+    font-size: 3rem;
+    font-weight: normal;
+    font-style: italic;
+}
+
+.wrapper{
+    background: #9ad3de;
+}
+
+textarea{
+    border-radius: 10px;
+    border: 10px solid rgba(125,175,250,0.3);
+}
+
+.titleDate{
+    display: flex;
+    justify-content: center;
+}
+
+.selectContainer{
+    display: flex;
+    justify-content: center;
+}
+
+// Media Queries
+@media only screen and (max-width : 590px) {
+    .mainContainer h1{
+        font-size: 14rem;
+    }
+}
+
+@media only screen and (max-width : 560px) {
+    .mainContainer h1{
+        font-size: 12rem;
+    }
+}
+
+@media only screen and (max-width : 525px) {
+    .finalLyric, .formContainer{
+        width: 99%;
+    }
+}
+
+@media only screen and (max-width : 525px) {
+    .finalLyric, .formContainer{
+        width: 99%;
+    }
+}
+
+@media only screen and (max-width : 480px) {
+    .titleDate{
+        width: 99%;
+    }
+
+    .mainContainer h1{
+        font-size: 11rem;
+    }
+}
+
+@media only screen and (max-width : 435px) {
+    .mainContainer h1{
+        font-size: 10rem;
+    }
 }
