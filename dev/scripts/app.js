@@ -29,22 +29,23 @@ class App extends React.Component {
       const songsData = firebaseData.val();
 
       for (let category in songsData) {
-        // console.log(songsData[category])
+        // console.log(category);
         for(let title in songsData[category]){
           songsArray.push({
+            category: category,
             title: title,
             date: songsData[category][title].date,
             lyrics: songsData[category][title].lyrics
           })
         }
       }
-      //add a key category so that in displaysong you can see the category as well -- do this after bootcamp
 
       this.setState({
         songs: songsArray
       })
     });
   }
+
 
   //I removed this code because this is only relevant for local storage like in the to do app example
   // addSongItem(addSong) {
@@ -65,7 +66,7 @@ class App extends React.Component {
           <div>
             {this.state.songs.map((song, i) => {
               // console.log(this.state.songs);
-              return <DisplaySong title={song.title} lyrics={song.lyrics} date={song.date} key={i} />
+              return <DisplaySong category={song.category} title={song.title} lyrics={song.lyrics} date={song.date} key={i} />
             })}
           </div>
         </div>
@@ -73,11 +74,5 @@ class App extends React.Component {
     )
   }
 }
-
-    // return <div className="storedLyrics">
-    //           <div>{this.props.data}</div>
-    //        </div>
-    //     }
-    //   }
 
 ReactDOM.render(<App />, document.getElementById('app'));

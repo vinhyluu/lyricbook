@@ -94,14 +94,19 @@ select{
     background: white;
 }
 
-.finalLyric h2{
-    border-bottom: 3px solid red;
+.categoryText{
     font-size: 3rem;
+    margin: 0;
+}
+
+.dateText{
+    font-size: 3rem;
+    border-bottom: 3px solid red;
     display: inline-block;
     margin-bottom: 0;
 }
 
-.finalLyric h3{
+.titleText{
     font-size: 3rem;
     font-weight: normal;
     font-style: italic;
