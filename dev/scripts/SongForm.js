@@ -4,7 +4,8 @@ import ReactDOM from 'react-dom';
 class SongForm extends React.Component {
     constructor() {
         super();
-        this.genres = ["Lust", "Love", "Separation", "Random"]
+        this.genres = ["Love", "Lust", "Separation", "Random"]
+        
         this.state = {
             currentLyrics: "",
             currentGenre: this.genres[0]
@@ -36,10 +37,6 @@ class SongForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        // this.props.submitForm(this.state.handleDate),
-        // this.props.submitForm(this.state.currentTitle),
-        // this.props.submitForm(this.state.currentLyrics),
-
         this.setState({
             currentLyrics: "",
             currentTitle: "",
@@ -50,7 +47,6 @@ class SongForm extends React.Component {
             date: this.state.currentDate,
             lyrics: this.state.currentLyrics
         }
-
         firebase.database().ref(`${this.state.currentGenre}/${this.state.currentTitle}`).set(song);
     }
 

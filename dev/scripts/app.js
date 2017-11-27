@@ -19,14 +19,12 @@ class App extends React.Component {
     this.state = {
       songs: []
     }
-    // this.addSongItem = this.addSongItem.bind(this);
   }
 
   componentDidMount() {
     const dbRef = firebase.database().ref()
 
     dbRef.on("value", (firebaseData) => {
-      console.log("Hi I ran!!");
       const songsArray = [];
       const songsData = firebaseData.val();
 
@@ -40,7 +38,7 @@ class App extends React.Component {
           })
         }
       }
-      //add a key category so that in displaysong you can put the category as well 
+      //add a key category so that in displaysong you can see the category as well -- do this after bootcamp
 
       this.setState({
         songs: songsArray
@@ -48,6 +46,7 @@ class App extends React.Component {
     });
   }
 
+  //I removed this code because this is only relevant for local storage like in the to do app example
   // addSongItem(addSong) {
   //   const newSongs = Array.from(this.state.songs)
   //   newSongs.push(addSong);
